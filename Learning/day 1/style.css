@@ -1,0 +1,19 @@
+div{
+    color: rosybrown;
+}
+#User{
+    color:aqua;
+    font-size: 30px;
+}
+.para{
+    border:9px solid blue;
+
+}
+.box_padding{
+    padding: 30px;
+    border: 1px solid brown;
+}
+.box_margin{
+    margin: 30px;
+    border: 1px solid rgb(69, 42, 165);
+}
