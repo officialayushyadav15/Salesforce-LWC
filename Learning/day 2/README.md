@@ -300,7 +300,6 @@ arr.methodName(function(currentItem, index, actualArray){
 })
 ```
 
----
 
 ### 1. map()
 
@@ -316,8 +315,6 @@ let updated_array = array_methods_test.map(function(currentItem, index, actualar
 console.log(updated_array)
 ```
 
----
-
 ### 2. filter()
 
 `filter()` returns a **new array** containing only those elements that satisfy the given condition.
@@ -329,8 +326,6 @@ let filter_arr = array_methods_test.filter(function(currentItem, index, actualar
 
 console.log(filter_arr)
 ```
-
----
 
 ### 3. every()
 
@@ -351,8 +346,6 @@ let false_arr = array_methods_test.every(function(currentItem, index, actualarra
 console.log(false_arr)
 ```
 
----
-
 ### 4. some()
 
 `some()` checks whether **at least one element** in the array satisfies the condition.
@@ -371,8 +364,6 @@ let false_arr1 = array_methods_test.some(function(currentItem, index, actualarra
 
 console.log(false_arr1)
 ```
-
----
 
 ### 5. sort()
 
@@ -400,8 +391,6 @@ let sortedvaldsc = array_methods_test.sort(function(a,b){
 console.log(sortedvaldsc)
 ```
 
----
-
 ### 6. reduce()
 
 `reduce()` reduces the array into a **single value**, processing elements from left to right.
@@ -423,8 +412,6 @@ let sum_array_test = array_methods_test.reduce(function(total, currentItem){
 
 console.log(sum_array_test)
 ```
-
----
 
 ### 7. forEach()
 
