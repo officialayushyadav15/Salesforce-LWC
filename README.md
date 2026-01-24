@@ -12,5 +12,13 @@ Learned the core building blocks required for LWC, including HTML structure, CSS
 Navigate to the `learning/day-1` folder to view the complete and detailed summary of Day 1.
 
 ---
+## Day 2: JavaScript Fundamentals for LWC
+
+Covered essential JavaScript concepts required for LWC development, including variables (`var`, `let`, `const`), data types, equality operators, array and string methods, destructuring, spread operator, JSON handling, and string interpolation with practical examples.
+
+➡️ **For more information:**  
+Navigate to the `learning/day-2` folder to view the complete and detailed summary of Day 2.
+
+---
 
 More days and topics will be added as the learning progresses.
