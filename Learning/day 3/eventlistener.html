@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Listner</title>
+</head>
+<body>
+    <div></div>
+    <button onclick="firstfunction()">Call first function</button>
+    <button class = "Nameofbtn">second button</button>
+    <button onclick="removehandler()">stop number generation</button>
+
+    <form onclick="alert('I am form')"> I am form
+        <div onclick="alert('I am div')">i am div
+                <p onclick="alert('I am p')">i am paragraph tag</p>
+        </div>
+    </form> <!--this is example of event bubbling that if we call child tag then it will call its parent tag too in hierarchy as we can see here if we call p then it will call div then form automatically-->
+
+    <button onclick = "thisiscustommethod()">Click here to call custom method</button>
+    <script src = "./eventlistner.js"></script>
+    
+</body>
+</html>

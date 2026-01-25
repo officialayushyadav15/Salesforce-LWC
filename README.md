@@ -20,5 +20,12 @@ Covered essential JavaScript concepts required for LWC development, including va
 Navigate to the `learning/day-2` folder to view the complete and detailed summary of Day 2.
 
 ---
+## Day 3: Advanced JavaScript & Lightning Framework for LWC
 
+Focused on asynchronous JavaScript and browser fundamentals used in LWC, including Promises, module import and export, DOM selectors, events and event propagation, custom events, arrow functions, timers, and an overview of the Lightning Framework with a comparison between Aura and LWC.
+
+➡️ **For more information:**
+Navigate to the `learning/day-3` folder to view the complete and detailed summary of Day 3.
+
+---
 More days and topics will be added as the learning progresses.
