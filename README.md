@@ -28,4 +28,9 @@ Focused on asynchronous JavaScript and browser fundamentals used in LWC, includi
 Navigate to the `learning/day-3` folder to view the complete and detailed summary of Day 3.
 
 ---
+## Day 4: Salesforce Setup & CLI Configuration for LWC
+
+Set up the Salesforce development environment by creating a Developer Org, installing and configuring the Salesforce CLI, updating and activating the org domain, and learning how to create a new Salesforce project and connect it to the org for development.
+
+---
 More days and topics will be added as the learning progresses.
