@@ -1,408 +1,172 @@
-## Day 3: JavaScript Concepts for Lightning Web Components (LWC)
+# Salesforce LWC – Project Setup & Scratch Org Guide
 
-This day focused on core JavaScript concepts that are heavily used while building Lightning Web Components. The topics include Promises, modules (import/export), DOM selectors, events, arrow functions, timers, and an introduction to the Lightning framework.
+This README explains how to create a Salesforce LWC project, connect VS Code with a Dev Hub, create and manage scratch orgs, and understand the difference between Dev Hub and Scratch Orgs. It also covers common errors and how to fix them.
 
 ---
 
-## Promises
+## 1. Project Creation
 
-A Promise is an object that represents a value that will be available sometime in the future.
+To create a new Salesforce project using the **old CLI (sfdx)**:
 
-Promises are mainly used to handle asynchronous operations in JavaScript, such as server calls, file loading, or API requests.
-
-### Promise States
-
-A Promise can be in one of these three states:
-
-1. **Pending**
-
-   * The initial state
-   * The operation is still in progress
-
-2. **Fulfilled**
-
-   * The operation completed successfully
-   * A value is returned using `resolve()`
-
-3. **Rejected**
-
-   * The operation failed
-   * An error is returned using `reject()`
-
-### Use Cases in LWC
-
-* Fetching data from the Salesforce server (Apex calls)
-* Loading files or static resources
-* Calling external APIs
-
-### Promise Syntax Example
-
-```js
-new Promise(function(resolve, reject) {
-    // resolve is used when the operation is successful
-    // reject is used when an error occurs
-    resolve("Success");
-});
+```
+sfdx force:project:create -n "projectname"
 ```
 
-### Custom Promise Function Example
+* `-n` → name of the new project
 
-```js
-function checkIf(data) {
-    return new Promise(function(resolve, reject) {
-        // Check condition
-        if (data === true) {
-            // Resolve promise if condition is true
-            resolve("Success");
-        } else {
-            // Reject promise if condition is false
-            reject("Unsuccess");
-        }
-    });
+This command creates the full Salesforce DX project structure.
+
+---
+
+## 2. Authorizing Dev Hub (Connecting VS Code)
+
+To connect VS Code with your **Dev Hub org**, run:
+
+```
+sfdx force:auth:web:login -a ayushyadav -d
+```
+
+* `-a` → alias name for the org
+* `-d` → sets this org as the default Dev Hub
+
+After login, the Dev Hub is linked to your local system.
+
+---
+
+## 3. Dev Hub vs Scratch Org
+
+### Dev Hub
+
+* Main Salesforce org
+* Used to create and manage scratch orgs
+* One Dev Hub can create multiple scratch orgs
+
+### Scratch Org
+
+* Temporary org
+* Source-driven (based on your project code)
+* Disposable (can be deleted and recreated anytime)
+* Lives for **minimum 1 day** and **maximum 30 days**
+
+Scratch orgs are **not copies of production**.
+
+Sandboxes are copies of production.
+
+**Scratch orgs do not replace sandboxes.**
+
+---
+
+## 4. Scratch Org Expiry
+
+* Scratch orgs live for a maximum of **30 days**
+* After expiry, they are deleted automatically
+* You must create a new scratch org again
+
+---
+
+## 5. project-scratch-def.json
+
+This file controls how your scratch org is created.
+
+Location:
+
+```
+config/project-scratch-def.json
+```
+
+To get **sample data** (Accounts and Opportunities), add:
+
+```json
+{
+  "hasSampleData": true
 }
 ```
 
-### Handling Promise Result
-
-```js
-checkIf(true)
-    .then(function(result) {
-        // then() is used to handle resolved value
-        console.log(result);
-    })
-    .catch(function(error) {
-        // catch() is used to handle rejected value
-        console.error(error);
-    });
-```
-
-> Calling a promise directly will not give the value. Use `then()` or `catch()` to access the result.
+* Default value is `false`
+* Setting it to `true` avoids creating a blank org
 
 ---
 
-## Modules: Import and Export
+## 6. Creating a Scratch Org
 
-Modules allow us to split code into reusable files.
+### Old CLI Command (sfdx)
 
-### Exporting Members
-
-#### Named Export
-
-```js
-export const PI = 3.14;
-
-export function multiply(a, b) {
-    // Returns multiplication of two numbers
-    return a * b;
-}
+```
+sfdx force:org:create -a lwcsratchorgone -d 30 -f config/project-scratch-def.json -s
 ```
 
-* Multiple variables or functions can be exported from a file
-* They must be imported using the same name
+Flags explained:
 
-#### Export with Alias
+* `-a` → alias name
+* `-d` → number of days the org is active (1–30)
+* `-f` → scratch definition file path
+* `-s` → set this org as default username
 
-```js
-export { PI as P };
+
+### New CLI Command (sf)
+
+```
+sf org create scratch --alias lwcsratchorgone --duration-days 30 --definition-file config/project-scratch-def.json --set-default
 ```
 
-#### Default Export
+Important notes:
 
-```js
-export default function divide(a, b) {
-    // Returns division of two numbers
-    return a / b;
-}
+* Do **not** use `sf force:*` commands
+* Avoid short flags like `-s` in `sf`
+* Always prefer full flag names
+
+---
+
+## 7. Opening the Scratch Org
+
+To open the default scratch org in a browser:
+
 ```
-
-* Only one default export is allowed per file
-* Curly braces are not required while importing default exports
-
-### Importing Members
-
-```js
-import { PI, multiply } from './util.js';
-import divide from './util.js';
-
-console.log(PI);
-console.log(multiply(2, 3));
-console.log(divide(6, 3));
-```
-
-### Import Everything
-
-```js
-import * as util from './util.js';
-
-console.log(util.PI);
-console.log(util.multiply(2, 3));
+sf org open
 ```
 
 ---
 
-## DOM Selectors
+## 8. Common Error: "no org configuration for name"
 
-### querySelector()
+This error happens when the Dev Hub is not set as default.
 
-Returns the first element that matches the given CSS selector.
+### Fix
 
-```js
-let element = document.querySelector('div');
+Run:
 
-// Logs the element
-console.log(element);
-
-// Logs HTML inside the element
-console.log(element.innerHTML);
-
-// Apply inline CSS using JavaScript
-element.style.color = "blue";
 ```
-
-### querySelectorAll()
-
-Returns all matching elements as a static NodeList.
-
-```js
-let elements = document.querySelectorAll('div');
-
-// Logs all div elements
-console.log(elements);
+sfdx force:config:set defaultdevhubusername=<DevHubUsername>
 ```
-
-* NodeList is not a true array
-* Convert it to an array to use array methods
-* In LWC, `document` is replaced with `this.template`
-
-```js
-this.template.querySelectorAll('div');
-```
-
----
-
-## Events
-
-An event is an action that occurs in the browser and allows JavaScript to respond to user interaction.
-
-### Examples of Events
-
-* Click
-* Mouse move
-* Key press
-* Form submit
-
-### Event Handler
-
-An event handler is a function that executes when an event occurs.
-
-### Ways to Add Events
-
-1. **HTML Event Attributes**
-
-   * Uses attributes like `onclick`, `onchange`
-
-2. **Event Listeners**
-
-   * Uses JavaScript methods
-
-### Event Listener Methods
-
-* `addEventListener()` to register an event
-* `removeEventListener()` to remove an event
-
-### Event Bubbling
-
-Event bubbling means the event starts from the target element and moves upward through its parent elements.
-
-Order example:
-
-* Button
-* Div
-* Body
-* HTML
-* Document
-
----
-
-## Custom Events
-
-Custom events allow us to create and dispatch our own events.
-
-### Custom Event Example
-
-```js
-document.addEventListener("Hello", function(event) {
-    // Access custom data using detail property
-    console.log(event.detail.name);
-});
-
-function triggerCustomEvent() {
-    let customEvent = new CustomEvent("Hello", {
-        detail: { name: "Ayush" }
-    });
-
-    // Dispatch the custom event
-    document.dispatchEvent(customEvent);
-}
-```
-
----
-
-## Arrow Functions
-
-Arrow functions provide a shorter syntax for writing functions.
-
-### Normal Function
-
-```js
-function getName() {
-    return "Ayush";
-}
-```
-
-### Arrow Function
-
-```js
-const getName = () => "Ayush";
-```
-
-### Benefits
-
-* Shorter syntax
-* Automatically binds `this` from surrounding context
 
 ### Example
 
-```js
-const sum = (a, b) => {
-    // Adds two numbers
-    let result = a + b;
-    console.log(result);
-};
-
-sum(2, 3);
+```
+sfdx force:config:set defaultdevhubusername=salesforce@dev.com
 ```
 
-### Arrow Function with Array Methods
-
-```js
-let numbers = [1, 2, 3, 4];
-
-let doubled = numbers.map(item => item * 2);
-
-console.log(doubled);
-```
+This sets the Dev Hub correctly.
 
 ---
 
-## Arrow Function and `this`
+## 9. Viewing All sf Commands
 
-Normal functions lose the outer `this` context inside nested functions.
+To see all available `sf` commands:
 
-Arrow functions preserve the outer context.
-
-### Example Using Normal Function
-
-```js
-let user = {
-    name: "Ayush",
-    last: "Yadav",
-    getName: function() {
-        function fullName() {
-            // this becomes undefined or window
-            console.log(this.name);
-        }
-        fullName();
-    }
-};
+```
+sf commands
 ```
 
-### Example Using Arrow Function
-
-```js
-let user = {
-    name: "Ayush",
-    last: "Yadav",
-    getName: function() {
-        const fullName = () => {
-            // this refers to outer object
-            console.log(`My full name is ${this.name} ${this.last}`);
-        };
-        fullName();
-    }
-};
-```
+This lists every command supported by the new Salesforce CLI.
 
 ---
 
-## Timers
+## 10. CLI Style Summary
 
-### setTimeout()
-
-Runs a function after a specified delay.
-
-```js
-let timerId = setTimeout(function() {
-    console.log("Executed after 5 seconds");
-}, 5000);
-```
-
-### clearTimeout()
-
-Stops the execution of `setTimeout()`.
-
-```js
-clearTimeout(timerId);
-```
-
-### setInterval()
-
-Runs a function repeatedly at a fixed interval.
-
-```js
-let intervalId = setInterval(function() {
-    console.log("Hello");
-}, 1000);
-```
+* `sfdx` → old CLI (still works)
+* `sf` → new CLI (recommended)
+* Never mix `sf` with `force:*`
+* Use full flag names with `sf`
 
 ---
 
-## Lightning Framework Overview
-
-The Lightning Component Framework is a UI framework used to build single-page applications for Salesforce.
-
-### Programming Models
-
-1. Aura Components
-2. Lightning Web Components (LWC)
-
-### Aura vs LWC
-
-* Aura requires more code
-* Rendering was not optimized in Aura
-* Modern JavaScript features were limited
-* LWC uses modern ES standards
-* LWC uses Shadow DOM and Web Components
-
-### JavaScript Versions Used
-
-* Aura is based on ES5
-* LWC uses ES6 and later versions
-
-### Benefits of LWC
-
-* Lightweight framework
-* Better performance
-* Uses standard web technologies
-* Easy integration with Aura components
-* Better testing support using Jest
-* Improved security
-
-### Coexistence
-
-* Aura and LWC can coexist on the same page
-* Aura components can include LWC components
-* Both share base Lightning components
-* Both use common services like LDS and UI API
-
----
