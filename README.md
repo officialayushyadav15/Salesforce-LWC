@@ -41,5 +41,12 @@ Focused on setting up Salesforce projects using the CLI, authorizing a Dev Hub, 
 Navigate to the learning/day-5 folder to view the complete and detailed summary of Day 5.
 
 ---
+Day 6: Lightning Web Components (LWC) Fundamentals
 
+Focused on understanding Lightning Web Components, including component creation, naming conventions, folder structure, and deployment. Covered one-way and two-way data binding, template rules, event handling, and the use of @track for reactive object properties.
+
+➡️ For more information:
+Navigate to the learning/day-6 folder to view the complete and detailed summary of Day 6.
+
+---
 More days and topics will be added as the learning progresses.
