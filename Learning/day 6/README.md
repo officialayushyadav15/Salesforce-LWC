@@ -289,10 +289,10 @@ export default class HelloWorld extends LightningElement {
 
 ---
 
-## 13. Reference Repository
+## Reference Code Repository
 
-All examples and learning code for this day can be found here:
+For complete source code and full component implementation, refer to the GitHub repository below.
 
-[https://github.com/officialayushyadav15/LWC-Connection-establishment-and-learnings](https://github.com/officialayushyadav15/LWC-Connection-establishment-and-learnings)
+👉 https://github.com/officialayushyadav15/LWC-Connection-establishment-and-learnings
 
----
+All components explained in this README (getters, conditional rendering, and template looping) are available in this repository. Refer to the respective component folders for the exact implementation.
