@@ -1,7 +1,6 @@
 # Day 6: Lightning Web Components (LWC) – Components, Naming, and Data Binding
 
-This day focuses on the core building blocks of Lightning Web Components. The goal is to understand how components are created, named, structured, and how data flows between JavaScript and HTML templates..git
-
+This day focuses on the core building blocks of Lightning Web Components. The goal is to understand how components are created, named, structured, and how data flows between JavaScript and HTML templates.
 ---
 
 ## 1. What is a Lightning Web Component
