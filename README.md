@@ -56,4 +56,13 @@ Focused on enhancing LWC templates with dynamic behavior using getters, conditio
 ➡️ For more information:
 Navigate to the learning/day-7 folder to view the complete and detailed summary of Day 7.
 ---
+
+Day 8: LWC Component Composition, DOM & Shadow DOM
+
+Focused on understanding how Lightning Web Components are structured and rendered, including component composition using parent–child components, DOM fundamentals, and Shadow DOM. Covered how Shadow DOM enables encapsulation in LWC by isolating DOM access, event propagation, and CSS, ensuring predictable and reusable components.
+
+➡️ For more information:
+Navigate to the learning/day-8 folder to view the complete and detailed summary of Day 8.
+---
+
 More days and topics will be added as the learning progresses.
