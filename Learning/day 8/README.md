@@ -1,4 +1,4 @@
-  .  ## Day 8: Component Composition, DOM & Shadow DOM in LWC
+## Day 8: Component Composition, DOM & Shadow DOM in LWC
 
 Day 8 focused on how Lightning Web Components are structured and rendered in the browser. I learned how components are composed, how the DOM works under the hood, and why Shadow DOM is a core concept in LWC.
 
