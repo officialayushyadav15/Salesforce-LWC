@@ -35,7 +35,7 @@ Set up the Salesforce development environment by creating a Developer Org, insta
 ---
 ## Day 5: Salesforce CLI, Dev Hub & Scratch Orgs
 
-Focused on setting up Salesforce projects using the CLI, authorizing a Dev Hub, and creating and managing scratch orgs. Covered the difference between Dev Hub and scratch orgs, scratch org lifecycle and expiry, usage of project-scratch-def.json, and working with both old (sfdx) and new (sf) CLI commands.     .
+Focused on setting up Salesforce projects using the CLI, authorizing a Dev Hub, and creating and managing scratch orgs. Covered the difference between Dev Hub and scratch orgs, scratch org lifecycle and expiry, usage of project-scratch-def.json, and working with both old (sfdx) and new (sf) CLI commands.
 
 ➡️ For more information:
 Navigate to the learning/day-5 folder to view the complete and detailed summary of Day 5.
